@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour
     /// Prefab used for the spawned obstacles.
     /// </summary>
     public GameObject obstaclePrefab;
-
+    
     /// <summary>
     /// Accumulated time since the last spawn in seconds.
     /// </summary>
@@ -86,12 +86,18 @@ public class Spawner : MonoBehaviour
     {
         // Spawn the obstacle.
         var obstacle = Instantiate(obstaclePrefab, transform);
-
+        
         // Move it to the target location.
+        var mySpawnOffset = spawnOffset;
+        
+        if (Random.value <= 0.1f)
+        { 
+            mySpawnOffset = spawnOffset / 2.0f;
+        }
         var spawnDown = RandomBool();
         obstacle.transform.position += (Vector3)(spawnDown ? 
-            spawnOffset + (1.0f - spawnSize) / 2.0f : 
-            -spawnOffset - (1.0f - spawnSize) / 2.0f
+                mySpawnOffset + (1.0f - spawnSize) / 2.0f : 
+            -mySpawnOffset - (1.0f - spawnSize) / 2.0f
         );
         
         // Scale it.

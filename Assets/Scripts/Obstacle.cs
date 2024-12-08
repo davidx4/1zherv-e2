@@ -42,7 +42,7 @@ public class Obstacle : MonoBehaviour
         mRB = GetComponent<Rigidbody2D>();
         mBC = GetComponent<BoxCollider2D>();
 
-        mRB.velocity = movementDirection * movementSpeed;
+        mRB.velocity = movementDirection * 3.0f;
     }
 
     /// <summary>
